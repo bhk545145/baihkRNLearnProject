@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { SectionList, StyleSheet, Text, View, Button, Alert,FlatList,TouchableOpacity,Image,TextInput } from 'react-native';
+import { SectionList, StyleSheet, Text, View, Button, Alert,FlatList,TouchableOpacity,Image,TextInput,NativeModules } from 'react-native';
 
-const onButtonPress = () => {
+var CalendarManager = NativeModules.CalendarManager;
+
+const alerter = () => {
     Alert.alert('123');
 }
 
@@ -10,8 +12,25 @@ const onButtonPress = () => {
 export default class SectionListBasics extends Component {
     constructor(props) {
         super(props);
-        this.state = { text: '' };
+        this.state = { nameText: '13567165451',
+                       passwordText: '1234512345',
+                     };
     }
+
+    onButtonPress = () => {
+        CalendarManager.addEvent(this.state.nameText, this.state.passwordText,(error, events) =>{
+            if (error) {
+                console.error(error);
+            } else {
+                this.setState({events:events});
+                console.log(events);
+                alerter;
+            }
+        });
+    }
+
+
+
   render() {
     return (
       <View style={styles.container}>
@@ -20,14 +39,27 @@ export default class SectionListBasics extends Component {
               // resizeMode={Image.resizeMode.repeat}
               source={{uri: 'http://www.broadlink.com.cn/images/homeFullpage/broadlink.png'}}
           />
-          <TextInput
-              style={styles.InputText}
-              onChangeText={(text) => this.setState({text})}
-              value={this.state.text}
-          />
+          <View style={styles.box}>
+              <View style={styles.name}>
+                  <Text>name</Text>
+                  <TextInput
+                      style={styles.InputText}
+                      onChangeText={(text) => this.setState({text})}
+                      value={this.state.nameText}
+                  />
+                  <Text>password</Text>
+                  <TextInput
+                      style={styles.InputText}
+                      onChangeText={(text) => this.setState({text})}
+                      value={this.state.passwordText}
+                  />
+              </View>
+
+          </View>
+
           <TouchableOpacity
               style={styles.item}
-              onPress={onButtonPress}
+              onPress={this.onButtonPress}
           >
               <Text style={styles.itemText}>login</Text>
           </TouchableOpacity>
@@ -44,16 +76,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
     },
-    sectionHeader: {
-        paddingTop: 2,
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingBottom: 2,
-        fontSize: 14,
-        fontWeight: 'bold',
-        backgroundColor: 'rgba(247,247,247,1.0)',
-    },
     item: {
+        // flex: 1,
         borderRadius: 20,
         padding: 10,
         fontSize: 18,
@@ -73,10 +97,24 @@ const styles = StyleSheet.create({
         borderWidth: 1
     },
     logo: {
-
+        // flex: 1,
         alignItems: 'center',
         width: 250,
         height: 60,
     },
+    box: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    name: {
+        width: 220,
+        height: 70,
+        flexDirection: 'row',
+        flexWrap:'wrap',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        alignContent: 'space-between',
+    }
 })
 
