@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { SectionList, StyleSheet, Text, View, Button, Alert,FlatList,TouchableOpacity,Image,TextInput,NativeModules } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
 var CalendarManager = NativeModules.CalendarManager;
 
-const alerter = () => {
-    Alert.alert('123');
+const alerter = (events) => {
+    Alert.alert(events);
 }
 
+// const App = StackNavigator({
+//     Main: {screen: MainScreen},
+//     Profile: {screen: ProfileScreen},
+// });
 
 
 export default class SectionListBasics extends Component {
@@ -18,18 +23,23 @@ export default class SectionListBasics extends Component {
     }
 
     onButtonPress = () => {
+
         CalendarManager.addEvent(this.state.nameText, this.state.passwordText,(error, events) =>{
             if (error) {
-                console.error(error);
+                // console.error(error);
+                var errors = 'error:' +  error;
+                alerter(errors);
             } else {
                 this.setState({events:events});
                 console.log(events);
-                alerter;
+                alerter(events);
             }
         });
     }
 
-
+    // static navigationOptions = {
+    //     title: 'Welcome',
+    // };
 
   render() {
     return (
@@ -44,13 +54,13 @@ export default class SectionListBasics extends Component {
                   <Text>name</Text>
                   <TextInput
                       style={styles.InputText}
-                      onChangeText={(text) => this.setState({text})}
+                      onChangeText={(text) => this.setState({nameText:text})}
                       value={this.state.nameText}
                   />
                   <Text>password</Text>
                   <TextInput
                       style={styles.InputText}
-                      onChangeText={(text) => this.setState({text})}
+                      onChangeText={(text) => this.setState({passwordText:text})}
                       value={this.state.passwordText}
                   />
               </View>
@@ -63,6 +73,7 @@ export default class SectionListBasics extends Component {
           >
               <Text style={styles.itemText}>login</Text>
           </TouchableOpacity>
+
       </View>
 
     );
