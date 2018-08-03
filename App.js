@@ -1,131 +1,103 @@
-import React, { Component } from 'react';
-import { SectionList, StyleSheet, Text, View, Button, Alert,FlatList,TouchableOpacity,Image,TextInput,NativeModules } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-
-var CalendarManager = NativeModules.CalendarManager;
-
-const alerter = (events) => {
-    Alert.alert(events);
+import React, {Component} from "react";
+import {Image} from 'react-native';
+import { createStackNavigator,createBottomTabNavigator } from 'react-navigation';
+// 自定义组件
+import HomeScreen from './HomeScreen';
+import LoginScreen from './Login';
+export default class FSMain extends Component {
+    render() {
+        return (
+            <StackNavigator />
+        );
+    }
 }
 
-// const App = StackNavigator({
-//     Main: {screen: MainScreen},
-//     Profile: {screen: ProfileScreen},
-// });
 
 
-export default class SectionListBasics extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { nameText: '13567165451',
-                       passwordText: '1234512345',
-                     };
-    }
+const BottomTabNavigator = createBottomTabNavigator(
+    {
+        Home: {
+            screen: HomeScreen,
+            navigationOptions: {
+                tabBarLabel: "首页",
+                tabBarIcon: ({ tintColor, focused }) => (
+                    <Image resizeMode='contain'
+                           source={require( './app/images/addressbook.png')}
+                           style={[{tintColor: tintColor,width:30}]}
+                    />
+                ),
+            },
+        },
 
-    onButtonPress = () => {
+        firstScreen: {
+            screen: HomeScreen,
+            navigationOptions: {
+                tabBarLabel: "CC",
+                tabBarIcon: ({ tintColor, focused }) => (
+                    <Image resizeMode='contain'
+                           source={require( './app/images/addressbook.png')}
+                           style={[{tintColor: tintColor,width:30}]}
+                    />
+                ),
+            },
+        },
 
-        CalendarManager.addEvent(this.state.nameText, this.state.passwordText,(error, events) =>{
-            if (error) {
-                // console.error(error);
-                var errors = 'error:' +  error;
-                alerter(errors);
-            } else {
-                this.setState({events:events});
-                console.log(events);
-                alerter(events);
+        secondScreen: {
+            screen: HomeScreen,
+            navigationOptions: {
+                tabBarLabel: "DD",
+                tabBarIcon: ({ tintColor, focused }) => (
+                    <Image resizeMode='contain'
+                           source={require( './app/images/addressbook.png')}
+                           style={[{tintColor: tintColor,width:30}]}
+                    />
+                ),
+            },
+        },
+
+        My: {
+            screen: LoginScreen,
+            navigationOptions: {
+                tabBarLabel: "我的",
+                tabBarIcon: ({ tintColor, focused }) => (
+                    <Image resizeMode='contain'
+                           source={require( './app/images/addressbook.png')}
+                           style={[{tintColor: tintColor,width:30}]}
+                    />
+                ),
+
             }
-        });
+        },
+    },
+
+    {
+        // 初始化哪个界面为显示的第一个界面，如果不配置，默认使用RouteConfigs中的第一个页面当做根界面
+        initialRouteName: "Home",
+        lazy: true,
+        tabBarOptions: {
+            inactiveTintColor: "#8F8F8F",
+            activeTintColor: "#ED5601",
+            showIcon:"true",
+            labelStyle: {
+                fontSize: 11
+            }
+        }
     }
+);
 
-    // static navigationOptions = {
-    //     title: 'Welcome',
-    // };
-
-  render() {
-    return (
-      <View style={styles.container}>
-          <Image
-              style={styles.logo}
-              // resizeMode={Image.resizeMode.repeat}
-              source={{uri: 'http://www.broadlink.com.cn/images/homeFullpage/broadlink.png'}}
-          />
-          <View style={styles.box}>
-              <View style={styles.name}>
-                  <Text>name</Text>
-                  <TextInput
-                      style={styles.InputText}
-                      onChangeText={(text) => this.setState({nameText:text})}
-                      value={this.state.nameText}
-                  />
-                  <Text>password</Text>
-                  <TextInput
-                      style={styles.InputText}
-                      onChangeText={(text) => this.setState({passwordText:text})}
-                      value={this.state.passwordText}
-                  />
-              </View>
-
-          </View>
-
-          <TouchableOpacity
-              style={styles.item}
-              onPress={this.onButtonPress}
-          >
-              <Text style={styles.itemText}>login</Text>
-          </TouchableOpacity>
-
-      </View>
-
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 22,
-        justifyContent: 'space-around',
-        alignItems: 'center',
+const StackNavigator = createStackNavigator(
+    {
+        Home: {
+            screen: BottomTabNavigator,
+        },
     },
-    item: {
-        // flex: 1,
-        borderRadius: 20,
-        padding: 10,
-        fontSize: 18,
-        height:40,
-        width:140,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        backgroundColor:'green',
-    },
-    itemText:{
-        color:'white',
-    },
-    InputText:{
-        height: 30,
-        width:140,
-        borderColor: '#0f0f0f',
-        borderWidth: 1
-    },
-    logo: {
-        // flex: 1,
-        alignItems: 'center',
-        width: 250,
-        height: 60,
-    },
-    box: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    name: {
-        width: 220,
-        height: 70,
-        flexDirection: 'row',
-        flexWrap:'wrap',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        alignContent: 'space-between',
+
+    {
+        // 初始化哪个界面为显示的第一个界面，如果不配置，默认使用RouteConfigs中的第一个页面当做根界面
+        initialRouteName: "Home",
+        lazy: true,
+        NavigatorOptions: {
+            headerTitle:"123",
+        }
     }
-})
-
+);
