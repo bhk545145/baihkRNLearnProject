@@ -1,19 +1,26 @@
 import React, {Component} from "react";
 import {Image} from 'react-native';
-import { createStackNavigator,createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator,createBottomTabNavigator,createSwitchNavigator } from 'react-navigation';
 // 自定义组件
 import HomeScreen from './HomeScreen';
 import LoginScreen from './Login';
 export default class FSMain extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: '111'
+        };
+    }
+
     render() {
         return (
-            <StackNavigator />
+            <SwitchNavigator />
         );
     }
 }
 
 
-
+//createBottomTabNavigator 底部TabBar
 const BottomTabNavigator = createBottomTabNavigator(
     {
         Home: {
@@ -85,6 +92,7 @@ const BottomTabNavigator = createBottomTabNavigator(
     }
 );
 
+//createStackNavigator 顶部导航栏
 const StackNavigator = createStackNavigator(
     {
         Home: {
@@ -96,8 +104,25 @@ const StackNavigator = createStackNavigator(
         // 初始化哪个界面为显示的第一个界面，如果不配置，默认使用RouteConfigs中的第一个页面当做根界面
         initialRouteName: "Home",
         lazy: true,
-        NavigatorOptions: {
-            headerTitle:"123",
+        navigationOptions: {
+            headerTitle: "首页",
         }
+
     }
 );
+
+const SwitchNavigator = createSwitchNavigator(
+    {
+        Home: {
+            screen: StackNavigator,
+        },
+        Login: {
+            screen: LoginScreen,
+        },
+    },
+
+    {
+        // 初始化哪个界面为显示的第一个界面，如果不配置，默认使用RouteConfigs中的第一个页面当做根界面
+        initialRouteName: "Home",
+    }
+)
