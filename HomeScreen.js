@@ -1,12 +1,23 @@
 import React,{Component} from 'react';
-import {View,Text} from 'react-native';
+import {View,Text,TextInput} from 'react-native';
+
 export default class HomeScreen extends Component {
-    static navigationOptions = {
-        title: 'Chat with Lucy',
+    constructor(props) {
+        super(props);
+        this.state = {text: ''};
     }
     render() {
         return (
-            <Text>HomeScreen</Text>
+            <View style={{padding: 10}}>
+                <TextInput
+                    style={{height: 40}}
+                    placeholder="Type here to translate!"
+                    onChangeText={(text) => this.setState({text})}
+                />
+                <Text style={{padding: 10, fontSize: 42}}>
+                    {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
+                </Text>
+            </View>
         )
     }
 }

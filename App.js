@@ -3,6 +3,7 @@ import {Image} from 'react-native';
 import { createStackNavigator,createBottomTabNavigator,createSwitchNavigator } from 'react-navigation';
 // 自定义组件
 import HomeScreen from './HomeScreen';
+import SecondScreen from './SecondScreen';
 import LoginScreen from './Login';
 export default class FSMain extends Component {
     constructor(props) {
@@ -50,7 +51,7 @@ const BottomTabNavigator = createBottomTabNavigator(
         },
 
         secondScreen: {
-            screen: HomeScreen,
+            screen: SecondScreen,
             navigationOptions: {
                 tabBarLabel: "DD",
                 tabBarIcon: ({ tintColor, focused }) => (
