@@ -3,6 +3,7 @@ import {Image} from 'react-native';
 import { createStackNavigator,createBottomTabNavigator,createSwitchNavigator } from 'react-navigation';
 // 自定义组件
 import HomeScreen from './HomeScreen';
+import FirstScreen from './FirstScreen';
 import SecondScreen from './SecondScreen';
 import LoginScreen from './Login';
 export default class FSMain extends Component {
@@ -38,7 +39,7 @@ const BottomTabNavigator = createBottomTabNavigator(
         },
 
         firstScreen: {
-            screen: HomeScreen,
+            screen: FirstScreen,
             navigationOptions: {
                 tabBarLabel: "CC",
                 tabBarIcon: ({ tintColor, focused }) => (
@@ -106,7 +107,7 @@ const StackNavigator = createStackNavigator(
         initialRouteName: "Home",
         lazy: true,
         navigationOptions: {
-            headerTitle: "首页",
+            // headerTitle: "首页",
         }
 
     }
@@ -115,7 +116,7 @@ const StackNavigator = createStackNavigator(
 const SwitchNavigator = createSwitchNavigator(
     {
         Home: {
-            screen: StackNavigator,
+            screen: BottomTabNavigator,
         },
         Login: {
             screen: LoginScreen,

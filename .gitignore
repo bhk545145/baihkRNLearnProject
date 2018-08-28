@@ -507,3 +507,4 @@ ios/Pods/YYCategories/YYCategories/UIKit/UIView+YYAdd.h
 ios/Pods/YYCategories/YYCategories/UIKit/UIView+YYAdd.m
 ios/Pods/YYCategories/YYCategories/YYCategories.h
 ios/Pods/YYCategories/YYCategories/YYCategoriesMacro.h
+ios/Pods/Headers/Private/Cordova/CDVCommandDelegate.h
