@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry,StyleSheet,Image, Text,View} from 'react-native';
 
-var REQUEST_URL = 'http://latiao.izanpin.com/api/article/timeline/1/1';
+var REQUEST_URL = 'http://latiao.izanpin.com/api/article/joke/1/1';
 
 const styles = StyleSheet.create({
     container:{
@@ -69,7 +69,7 @@ export default class ReactNativeTest extends Component
         return (
             <View style={styles.container}>
                 <Text>
-                    正在加载电影数据......
+                    正在加载辣条数据......
                 </Text>
             </View>
         );
@@ -83,7 +83,7 @@ export default class ReactNativeTest extends Component
                        style={styles.thumbnail} />
                 <View style={styles.rightContainer}>
                     <Text style={styles.title}>{list.authorName}</Text>
-                    <Text style={styles.year}>{list.authorId}</Text>
+                    <Text style={styles.year}>{list.content}</Text>
                 </View>
             </View>
         );

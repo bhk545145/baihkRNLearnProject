@@ -29,6 +29,18 @@ const HomeScreenStack = createStackNavigator(
         Home: {
             screen: HomeScreen,
         },
+    },
+    {
+        initialRouteName: 'Home',
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: '#ED5601',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+        },
     });
 
 const FirstScreenStack = createStackNavigator(
@@ -36,12 +48,36 @@ const FirstScreenStack = createStackNavigator(
         First: {
             screen: FirstScreen,
         },
+    },
+    {
+        initialRouteName: 'First',
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: '#ED5601',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+        },
     });
 
 const SecondScreenStack = createStackNavigator(
     {
         Second: {
             screen: SecondScreen,
+        },
+    },
+    {
+        initialRouteName: 'Second',
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: '#ED5601',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
         },
     });
 
@@ -52,7 +88,19 @@ const LoginScreenStack = createStackNavigator(
         },
         Details:{
             screen: DetailsScreen,
-        }
+        },
+    },
+    {
+        initialRouteName: 'Login',
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: '#ED5601',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+        },
     });
 
 //createBottomTabNavigator 底部TabBar

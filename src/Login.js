@@ -28,9 +28,10 @@ export default class SectionListBasics extends Component<Props> {
                 alerter(errors);
             } else {
                 console.log(events);
-                // alerter(events);
+                // 传递参数到Details页面
                 this.props.navigation.navigate('Details', {
-                    nameStr:events,
+                    nameStr: events,
+                    titleParam: 'Details',
                 });
             }
         });
@@ -39,7 +40,6 @@ export default class SectionListBasics extends Component<Props> {
 
 
   render() {
-      const {navigation} = this.props;
     return (
       <View style={styles.container}>
           <Image
