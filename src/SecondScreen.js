@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
 
 export default class ReactNativeTest extends Component
 {
+    static navigationOptions = {
+        title: 'Second',
+    };
     constructor(props) {
         super(props);
 

@@ -10,6 +10,9 @@ const alerter = (events) => {
 }
 type Props = {};
 export default class SectionListBasics extends Component<Props> {
+    static navigationOptions = {
+        title: 'Login',
+    };
     constructor(props) {
         super(props);
         this.state = { nameText: '13567165451',
@@ -21,14 +24,14 @@ export default class SectionListBasics extends Component<Props> {
 
         CalendarManager.addEvent(this.state.nameText, this.state.passwordText,(error, events) =>{
             if (error) {
-                // console.error(error);
                 var errors = 'error:' +  error;
                 alerter(errors);
             } else {
-                this.setState({events:events});
                 console.log(events);
-                alerter(events);
-                this.props.navigation.navigate('HomeScreen')
+                // alerter(events);
+                this.props.navigation.navigate('Details', {
+                    nameStr:events,
+                });
             }
         });
     }

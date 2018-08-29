@@ -2,11 +2,15 @@ import React,{Component} from 'react';
 import {View,Text,TextInput} from 'react-native';
 
 export default class HomeScreen extends Component {
+    static navigationOptions = {
+        title: 'Home',
+    };
     constructor(props) {
         super(props);
         this.state = {text: ''};
     }
     render() {
+
         return (
             <View style={{padding: 10}}>
                 <TextInput
