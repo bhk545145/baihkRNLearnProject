@@ -1,9 +1,16 @@
 import React,{Component} from 'react';
-import {View,Text,TextInput} from 'react-native';
+import {View,Text,TextInput,Button} from 'react-native';
 
 export default class HomeScreen extends Component {
     static navigationOptions = {
         title: 'Home',
+        headerRight: (
+            <Button
+                onPress={() => alert('This is a button!')}
+                title="Info"
+                color="#fff"
+            />
+        ),
     };
     constructor(props) {
         super(props);
