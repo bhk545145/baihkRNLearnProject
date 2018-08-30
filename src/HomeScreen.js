@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,TextInput,Button} from 'react-native';
+import {View,Text,TextInput,Button,StatusBar} from 'react-native';
 
 export default class HomeScreen extends Component {
     static navigationOptions = {
@@ -20,6 +20,11 @@ export default class HomeScreen extends Component {
 
         return (
             <View style={{padding: 10}}>
+                {/*/设置状态栏背景色*/}
+                <StatusBar
+                    barStyle="light-content"
+                    backgroundColor="#6a51ae"
+                />
                 <TextInput
                     style={{height: 40}}
                     placeholder="Type here to translate!"

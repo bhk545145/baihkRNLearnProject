@@ -18,6 +18,7 @@ export default class FSMain extends Component {
 
     render() {
         return (
+
             <BottomTabNavigator />
         );
     }
@@ -102,6 +103,18 @@ const LoginScreenStack = createStackNavigator(
             },
         },
     });
+
+//隐藏tabbar
+LoginScreenStack.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true;
+    if (navigation.state.index > 0) {
+        tabBarVisible = false;
+    }
+
+    return {
+        tabBarVisible,
+    };
+};
 
 //createBottomTabNavigator 底部TabBar
 const BottomTabNavigator = createBottomTabNavigator(
