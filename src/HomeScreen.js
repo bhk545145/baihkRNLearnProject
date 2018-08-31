@@ -1,38 +1,53 @@
 import React,{Component} from 'react';
-import {View,Text,TextInput,Button,StatusBar} from 'react-native';
+import {View,Text,TextInput,Button,StatusBar,Platform} from 'react-native';
 
 export default class HomeScreen extends Component {
-    static navigationOptions = {
-        title: 'Home',
-        headerRight: (
-            <Button
-                onPress={() => alert('This is a button!')}
-                title="Info"
-                color="#fff"
-            />
-        ),
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: 'Home',
+            headerRight: (
+                <Button
+                    onPress={navigation.getParam('increaseCount')}
+                    title="Info"
+                    color={Platform.OS === 'ios' ? '#fff' : null}
+                />
+            ),
+        };
+
     };
-    constructor(props) {
-        super(props);
-        this.state = {text: ''};
+    componentWillMount() {
+        this.props.navigation.setParams({ increaseCount: this._increaseCount });
     }
+
+    state = {
+        count: 0,
+    };
+
+    _increaseCount = () => {
+        this.setState({ count: this.state.count + 1 });
+    };
+
     render() {
 
         return (
-            <View style={{padding: 10}}>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 {/*/设置状态栏背景色*/}
                 <StatusBar
                     barStyle="light-content"
                     backgroundColor="#6a51ae"
                 />
-                <TextInput
-                    style={{height: 40}}
-                    placeholder="Type here to translate!"
-                    onChangeText={(text) => this.setState({text})}
+                <Text>Home Screen</Text>
+                <Text>Count: {this.state.count}</Text>
+                <Button
+                    title="Go to Details"
+                    onPress={() => {
+                        /* 1. Navigate to the Details route with params */
+                        this.props.navigation.navigate('Details', {
+                            itemId: 86,
+                            otherParam: 'First Details',
+                        });
+                    }}
                 />
-                <Text style={{padding: 10, fontSize: 42}}>
-                    {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
-                </Text>
             </View>
         )
     }
