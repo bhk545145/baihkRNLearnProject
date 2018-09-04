@@ -6,15 +6,8 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <BLLetBase/BLLetBase.h>
-#import <BLLetCore/BLLetCore.h>
-#import <BLLetPlugins/BLLetPlugins.h>
-#import <BLLetCloud/BLLetCloud.h>
-#import <BLLetAccount/BLLetAccount.h>
-#import <BLLetFamily/BLLetFamily.h>
-@interface AppDelegate : UIResponder <UIApplicationDelegate,BLControllerDelegate>
+#import <BLLetAsync/BLLetAsync.h>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
-@property (strong, nonatomic) BLLet *let;
-@property (strong, nonatomic) BLAccount *account;
 @end

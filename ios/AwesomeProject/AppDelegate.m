@@ -37,24 +37,25 @@
 }
 
 - (void)loadAPPSDK {
-  self.let = [BLLet sharedLetWithLicense:@"0PlPqgTGPZt7CwNNz4lWVm7qQZqm8AdPyooafIrN9QX5UING6RYrag2V2nFqWRIQrFDxVgAAAADoWWz5UyBiHvQQIPyIUhi4XFSykPGAqniglnoIUWhvuHCgxWxDEyF0yb0xHzyz6V5BLR6D0KoiI6QqjWxRKs8JsEkbxXTfoUSQjDzWcfVjcA4AAADzeX7wfU+3ndxs2/3yXOnJrFAlYyFEltcuD9SloQA7kInW0ynCvel2PMHSm6RgRp/xNYhi5LPROx4fnr746yHD"];
-  [self.let setDebugLog:BL_LEVEL_ALL];                           // Set APPSDK debug log level
-  [self.let.controller setSDKRawDebugLevel:BL_LEVEL_ALL];        // Set DNASDK debug log level
-  self.let.configParam.controllerSendCount = 5;
+  NSDictionary *initDic = @{
+                            @"license":@"CceFpDt7d+r4pZ8KP74tbpNSf9Ug9pP+ytpIXApsCYpvvDEid0s8SdJtKgQMc5QmUsWWVwAAAACvEX37zpG5Wgi/Mlnda1pd2B9J96AQz9N0vO6WstfgR9yEgbkpFXFyJbsnfyHXt8pOdkTVo81rQrPhkOnhmpQBsEkbxXTfoUSQjDzWcfVjcAAAAAA=",
+                            @"loglevel":@(4)
+                            };
   
-  [BLLet sharedLet].configParam.controllerLocalTimeout = 2000;
-  [BLLet sharedLet].configParam.controllerRemoteTimeout = 4000;
-  
-  self.let.configParam.controllerScriptDownloadVersion = 1;
-  
-  
-  [self.let.controller startProbe:3000];                           // Start probe device
-  self.let.controller.delegate = self;
-  
-  NSString *licenseId = self.let.configParam.licenseId;
-  NSString *companyId = self.let.configParam.companyId;
-  
-  //BLLetAccount
-  self.account = [BLAccount sharedAccountWithlicenseId:licenseId CompanyId:companyId];
+  NSString *sdkInitResult = [BLAsyncLet sdkInit:[self jsonStringFromDictionary:initDic]];
+  NSLog(@"loadAppSdk: %@", sdkInitResult);
+}
+
+- (NSString*)jsonStringFromDictionary:(NSDictionary *)dic {
+  return [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dic options:0 error:nil]
+                               encoding:NSUTF8StringEncoding];
+}
+
+- (id)dictionaryFromJsonString:(NSString*)jsonString {
+  if (jsonString) {
+    return [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                           options:NSJSONReadingMutableLeaves error:nil];
+  }
+  return nil;
 }
 @end

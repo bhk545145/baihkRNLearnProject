@@ -21,16 +21,20 @@ export default class SectionListBasics extends Component<Props> {
     }
 
     onButtonPress = () => {
+    	loginDic =	{"username":this.state.nameText,
+                     "password":this.state.passwordText,
+                    };
 
-        CalendarManager.addEvent(this.state.nameText, this.state.passwordText,(error, events) =>{
+        CalendarManager.accountManagement('LoginWithPassword',JSON.stringify(loginDic),(error, events) =>{
             if (error) {
                 var errors = 'error:' +  error;
                 alerter(errors);
             } else {
-                console.log(events);
+            	var data = JSON.parse(events);
+                console.log(data);
                 // 传递参数到Details页面
                 this.props.navigation.navigate('Details', {
-                    nameStr: events,
+                    userId: data['userId'],
                     titleParam: 'Details',
                 });
             }

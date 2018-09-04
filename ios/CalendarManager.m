@@ -12,14 +12,21 @@
 
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(addEvent:(NSString *)name location:(NSString *)location completionHandler:(RCTResponseSenderBlock)callback)
+
+RCT_EXPORT_METHOD(accountManagement:(NSString *)action params:(NSString *)params completionHandler:(RCTResponseSenderBlock)callback)
 {
-  RCTLogInfo(@"Pretending to create an event %@ at %@", name, location);
-  BLAccount *account = [BLAccount sharedAccount];
-  [account login:name password:location completionHandler:^(BLLoginResult * _Nonnull result) {
-    callback(@[@(result.error), result.nickname]);
+  RCTLogInfo(@"accountManagement %@ ,%@ ",action, params);
+  [BLAsyncLet accountManagement:action params:params callback:^(NSString * _Nullable result) {
+    callback(@[@(0), result]);
   }];
 }
 
+RCT_EXPORT_METHOD(familyManagement:(NSString *)params completionHandler:(RCTResponseSenderBlock)callback)
+{
+  RCTLogInfo(@"familyManagement %@ ", params);
+  [BLAsyncLet familyManagement:@"" params:params callback:^(NSString * _Nullable result) {
+    callback(@[@(0), result]);
+  }];
+}
 
 @end

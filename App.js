@@ -107,7 +107,7 @@ const LoginScreenStack = createStackNavigator(
 //隐藏tabbar
 LoginScreenStack.navigationOptions = ({ navigation }) => {
     let tabBarVisible = true;
-    if (navigation.state.index > 0) {
+    if (navigation.state.index > 1) {
         tabBarVisible = false;
     }
 

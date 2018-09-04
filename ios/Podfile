@@ -11,8 +11,9 @@ target 'AwesomeProject' do
 
   # Pods for AwesomeProject
 
+   pod 'BLLetAsync'
    pod 'BLLet'
-	
+
 	pod 'Cordova', '~> 4.4.0'
 	pod 'SSZipArchive', '~> 2.1.1'
 	pod 'MBProgressHUD', '~> 1.1.0'
