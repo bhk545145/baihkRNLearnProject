@@ -11,7 +11,7 @@ const alerter = (events) => {
 type Props = {};
 export default class SectionListBasics extends Component<Props> {
     static navigationOptions = {
-        title: 'Login',
+        title: '账号',
     };
     constructor(props) {
         super(props);

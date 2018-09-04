@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 export default class ReactNativeTest extends Component
 {
     static navigationOptions = {
-        title: 'Second',
+        title: '红码',
     };
     constructor(props) {
         super(props);

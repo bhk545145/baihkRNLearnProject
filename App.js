@@ -122,7 +122,7 @@ const BottomTabNavigator = createBottomTabNavigator(
         Home: {
             screen: HomeScreenStack,
             navigationOptions: {
-                tabBarLabel: "首页",
+                tabBarLabel: "家庭",
                 tabBarIcon: ({ tintColor, focused }) => (
                     <Image resizeMode='contain'
                            source={require( './app/images/addressbook.png')}
@@ -135,7 +135,7 @@ const BottomTabNavigator = createBottomTabNavigator(
         firstScreen: {
             screen: FirstScreenStack,
             navigationOptions: {
-                tabBarLabel: "First",
+                tabBarLabel: "配网",
                 tabBarIcon: ({ tintColor, focused }) => (
                     <Image resizeMode='contain'
                            source={require( './app/images/addressbook.png')}
@@ -148,7 +148,7 @@ const BottomTabNavigator = createBottomTabNavigator(
         secondScreen: {
             screen: SecondScreenStack,
             navigationOptions: {
-                tabBarLabel: "Second",
+                tabBarLabel: "红码",
                 tabBarIcon: ({ tintColor, focused }) => (
                     <Image resizeMode='contain'
                            source={require( './app/images/addressbook.png')}
@@ -161,7 +161,7 @@ const BottomTabNavigator = createBottomTabNavigator(
         My: {
             screen: LoginScreenStack,
             navigationOptions: {
-                tabBarLabel: "我的",
+                tabBarLabel: "账号",
                 tabBarIcon: ({ tintColor, focused }) => (
                     <Image resizeMode='contain'
                            source={require( './app/images/addressbook.png')}

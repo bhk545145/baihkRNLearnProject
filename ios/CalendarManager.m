@@ -21,10 +21,42 @@ RCT_EXPORT_METHOD(accountManagement:(NSString *)action params:(NSString *)params
   }];
 }
 
-RCT_EXPORT_METHOD(familyManagement:(NSString *)params completionHandler:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(familyManagement:(NSString *)action params:(NSString *)params completionHandler:(RCTResponseSenderBlock)callback)
 {
   RCTLogInfo(@"familyManagement %@ ", params);
-  [BLAsyncLet familyManagement:@"" params:params callback:^(NSString * _Nullable result) {
+  [BLAsyncLet familyManagement:action params:params callback:^(NSString * _Nullable result) {
+    callback(@[@(0), result]);
+  }];
+}
+
+RCT_EXPORT_METHOD(deviceConfig:(NSString *)action params:(NSString *)params completionHandler:(RCTResponseSenderBlock)callback)
+{
+  RCTLogInfo(@"deviceConfig %@ ", params);
+  [BLAsyncLet deviceConfig:action params:params callback:^(NSString * _Nullable result) {
+    callback(@[@(0), result]);
+  }];
+}
+
+RCT_EXPORT_METHOD(deviceControl:(NSString *)action endPointInfo:(NSString *)endPointInfo subEndPointInfo:(NSString *)subEndPointInfo params:(NSString *)params completionHandler:(RCTResponseSenderBlock)callback)
+{
+  RCTLogInfo(@"deviceControl %@ ", params);
+  [BLAsyncLet deviceControl:action endPointInfo:endPointInfo subEndPointInfo:subEndPointInfo params:params callback:^(NSString * _Nullable result) {
+    callback(@[@(0), result]);
+  }];
+}
+
+RCT_EXPORT_METHOD(subDeviceManagement:(NSString *)action endPointInfo:(NSString *)endPointInfo params:(NSString *)params completionHandler:(RCTResponseSenderBlock)callback)
+{
+  RCTLogInfo(@"subDeviceManagement %@ ", params);
+  [BLAsyncLet subDeviceManagement:action endPointInfo:endPointInfo params:params callback:^(NSString * _Nullable result)  {
+    callback(@[@(0), result]);
+  }];
+}
+
+RCT_EXPORT_METHOD(iRService:(NSString *)action params:(NSString *)params completionHandler:(RCTResponseSenderBlock)callback)
+{
+  RCTLogInfo(@"iRService %@ ", params);
+  [BLAsyncLet iRService:action params:params callback:^(NSString * _Nullable result) {
     callback(@[@(0), result]);
   }];
 }

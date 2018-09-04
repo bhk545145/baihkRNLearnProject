@@ -4,7 +4,7 @@ import {View,Text,TextInput,Button,StatusBar,Platform} from 'react-native';
 export default class HomeScreen extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
-            title: 'Home',
+            title: '家庭',
             headerRight: (
                 <Button
                     onPress={navigation.getParam('increaseCount')}

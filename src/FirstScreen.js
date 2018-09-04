@@ -3,7 +3,7 @@ import {View,Text,TextInput} from 'react-native';
 
 export default class FirstScreen extends Component {
     static navigationOptions = {
-        title: 'First',
+        title: '配网',
     };
     constructor(props) {
         super(props);
