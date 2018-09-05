@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Image} from 'react-native';
+import {Image, YellowBox} from 'react-native';
 import { createStackNavigator,createBottomTabNavigator,createSwitchNavigator } from 'react-navigation';
 // 自定义组件
 import HomeScreen from './src/HomeScreen';
@@ -17,6 +17,7 @@ export default class FSMain extends Component {
     }
 
     render() {
+
         return (
 
             <BottomTabNavigator />

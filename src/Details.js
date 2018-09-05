@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, View, StyleSheet, NativeModules,Image } from 'react-native';
+import {Button, Text, View, StyleSheet, NativeModules, Image, YellowBox} from 'react-native';
 
 var CalendarManager = NativeModules.CalendarManager;
 
@@ -13,7 +13,7 @@ export default class DetailsScreen extends React.Component {
         super(props);
         this.state = { nickname: '',
         				userId:'',
-        				icon:'',	
+        				icon:'http://www.broadlink.com.cn/images/homeFullpage/broadlink.png',
                      };
     }
     componentDidMount() {
@@ -38,12 +38,15 @@ export default class DetailsScreen extends React.Component {
         });
     }
     render() {
+        YellowBox.ignoreWarnings(['Warning: ']);
+        console.log(this.state.icon);
         return (
             <View style={styles.mainView}>
 	            <Image
 	              style={styles.logo}
 	              source={{uri: this.state.icon}}
 	          	/>
+
                 <Text>userId: {this.state.userId}</Text>
                 <Text>nickname: {this.state.nickname} </Text>
             </View>

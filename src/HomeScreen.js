@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,TextInput,Button,StatusBar,Platform} from 'react-native';
+import {View,Text,TextInput,Button,StatusBar,Platform,YellowBox} from 'react-native';
 
 export default class HomeScreen extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -7,7 +7,7 @@ export default class HomeScreen extends Component {
             title: '家庭',
             headerRight: (
                 <Button
-                    onPress={navigation.getParam('increaseCount')}
+                    onPress={navigation.getParam('increaseCount', null)}
                     title="Info"
                     color={Platform.OS === 'ios' ? '#fff' : null}
                 />
@@ -28,7 +28,7 @@ export default class HomeScreen extends Component {
     };
 
     render() {
-
+        YellowBox.ignoreWarnings(['Warning: ']);
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 {/*/设置状态栏背景色*/}
