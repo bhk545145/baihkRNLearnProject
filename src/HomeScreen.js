@@ -1,13 +1,13 @@
 import React,{Component} from 'react';
-import {View,Text,TextInput,Button,StatusBar,Platform,YellowBox} from 'react-native';
+import {View,Text,TextInput,Button,StatusBar,Platform,YellowBox,NativeModules} from 'react-native';
+var CalendarManager = NativeModules.CalendarManager;
 
 export default class HomeScreen extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
-            title: '家庭',
+            title: '局域网',
             headerRight: (
                 <Button
-                    onPress={navigation.getParam('increaseCount', null)}
                     title="Info"
                     color={Platform.OS === 'ios' ? '#fff' : null}
                 />
@@ -15,17 +15,34 @@ export default class HomeScreen extends Component {
         };
 
     };
-    componentWillMount() {
-        this.props.navigation.setParams({ increaseCount: this._increaseCount });
+    constructor(props) {
+        super(props);
+        this.state = {
+            result: '',
+        };
     }
 
-    state = {
-        count: 0,
-    };
+    fetchData()
+    {
+        probe =	{ };
+        CalendarManager.deviceConfig('ScanDevices',JSON.stringify(probe),(error, events) =>{
+            if (error) {
+                var errors = 'error:' +  error;
+                alerter(errors);
+            } else {
+                var data = JSON.parse(events);
+                console.log(data);
+                this.setState({result:events});
+            }
+        });
 
-    _increaseCount = () => {
-        this.setState({ count: this.state.count + 1 });
-    };
+    }
+
+    componentDidMount() {
+        this.fetchData();
+    }
+
+
 
     render() {
         YellowBox.ignoreWarnings(['Warning: ']);
@@ -36,18 +53,7 @@ export default class HomeScreen extends Component {
                     barStyle="light-content"
                     backgroundColor="#6a51ae"
                 />
-                <Text>Home Screen</Text>
-                <Text>Count: {this.state.count}</Text>
-                <Button
-                    title="Go to Details"
-                    onPress={() => {
-                        /* 1. Navigate to the Details route with params */
-                        this.props.navigation.navigate('Details', {
-                            itemId: 86,
-                            otherParam: 'First Details',
-                        });
-                    }}
-                />
+                <Text>{this.state.result}</Text>
             </View>
         )
     }

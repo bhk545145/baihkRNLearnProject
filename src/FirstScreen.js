@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {View, Text, TextInput, StyleSheet, TouchableOpacity, NativeModules} from 'react-native';
-
+import { NetworkInfo } from 'react-native-network-info';
 var CalendarManager = NativeModules.CalendarManager;
 
 export default class FirstScreen extends Component {
@@ -30,6 +30,18 @@ export default class FirstScreen extends Component {
             }
         });
     }
+
+    componentDidMount()
+    {
+        // Get SSID
+        // NetworkInfo.getSSID(ssid => {
+        //     console.log(ssid);
+        //     this.setState({ssidText:ssid});
+        // });
+    }
+
+
+
     render() {
 
         return (
@@ -91,7 +103,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         height:40,
         width:140,
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
         backgroundColor:'#ED5601',
     },

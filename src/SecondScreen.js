@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { AppRegistry,StyleSheet,Image, Text,View} from 'react-native';
+import {AppRegistry, StyleSheet, Image, Text, View, FlatList, TouchableHighlight, Platform,SeparatorComponent} from 'react-native';
 
-var REQUEST_URL = 'http://latiao.izanpin.com/api/article/joke/1/1';
+var REQUEST_URL = 'http://latiao.izanpin.com/api/article/joke/1/100';
 
 const styles = StyleSheet.create({
     container:{
-        flex:1,flexDirection:'row',justifyContent:'center',alignItems:'center',backgroundColor:'#F5FCFF'
+        flex:1,flexDirection:'row',justifyContent:'center',alignItems:'flex-start',backgroundColor:'#F5FCFF'
     },
     thumbnail:{
         width:100,height:80
@@ -19,12 +19,22 @@ const styles = StyleSheet.create({
     year:{
         textAlign:'center'
     },
+    Nameitem: {
+        padding: 10,
+        fontSize: 18,
+        height: 30,
+    },
+    contentitem: {
+        padding: 10,
+        fontSize: 12,
+        height: 60,
+    },
 });
 
 export default class ReactNativeTest extends Component
 {
     static navigationOptions = {
-        title: '红码',
+        title: '网络请求',
     };
     constructor(props) {
         super(props);
@@ -39,7 +49,7 @@ export default class ReactNativeTest extends Component
         if (!this.state.list) {
             return this.renderLoadingView();
         }
-        var list = this.state.list[0];
+        var list = this.state.list;
         return this.renderMovie(list);
     }
 
@@ -53,6 +63,7 @@ export default class ReactNativeTest extends Component
                 this.setState({
                     list:responseData.list,
                 });
+
             })
             .catch((error) => {
                 callback(error);
@@ -77,14 +88,24 @@ export default class ReactNativeTest extends Component
 
     renderMovie(list)
     {
+        console.log(list);
         return (
             <View style={styles.container}>
-                <Image source={{uri:list.authorAvatar}}
-                       style={styles.thumbnail} />
-                <View style={styles.rightContainer}>
-                    <Text style={styles.title}>{list.authorName}</Text>
-                    <Text style={styles.year}>{list.content}</Text>
-                </View>
+                <FlatList
+                    ItemSeparatorComponent={SeparatorComponent}
+                    data={list}
+                    renderItem={({item, separators}) => (
+                        <TouchableHighlight
+                            onPress={() => this.fetchData()}
+                            onShowUnderlay={separators.highlight}
+                            onHideUnderlay={separators.unhighlight}>
+                            <View style={{backgroundColor: 'white'}}>
+                                <Text style={styles.Nameitem}>{item.authorName}</Text>
+                                <Text style={styles.contentitem}>{item.content}</Text>
+                            </View>
+                        </TouchableHighlight>
+                    )}
+                />
             </View>
         );
     }

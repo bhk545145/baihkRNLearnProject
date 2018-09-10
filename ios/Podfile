@@ -22,4 +22,8 @@ target 'AwesomeProject' do
     pod 'Masonry', '~> 0.6.2'
     pod 'BLExtension'
     pod 'SVProgressHUD'
+  pod 'react-native-network-info', :path => '../node_modules/react-native-network-info'
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
 end

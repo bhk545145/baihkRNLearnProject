@@ -123,7 +123,7 @@ const BottomTabNavigator = createBottomTabNavigator(
         Home: {
             screen: HomeScreenStack,
             navigationOptions: {
-                tabBarLabel: "家庭",
+                tabBarLabel: "局域网",
                 tabBarIcon: ({ tintColor, focused }) => (
                     <Image resizeMode='contain'
                            source={require( './app/images/addressbook.png')}
@@ -149,7 +149,7 @@ const BottomTabNavigator = createBottomTabNavigator(
         secondScreen: {
             screen: SecondScreenStack,
             navigationOptions: {
-                tabBarLabel: "红码",
+                tabBarLabel: "网络请求",
                 tabBarIcon: ({ tintColor, focused }) => (
                     <Image resizeMode='contain'
                            source={require( './app/images/addressbook.png')}
