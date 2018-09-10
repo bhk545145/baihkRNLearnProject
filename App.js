@@ -7,6 +7,7 @@ import FirstScreen from './src/FirstScreen';
 import SecondScreen from './src/SecondScreen';
 import LoginScreen from './src/Login';
 import DetailsScreen from './src/Details';
+import DeviceControllerScreen from './src/DeviceController';
 
 export default class FSMain extends Component {
     constructor(props) {
@@ -31,6 +32,9 @@ const HomeScreenStack = createStackNavigator(
         Home: {
             screen: HomeScreen,
         },
+        DeviceController: {
+            screen: DeviceControllerScreen,
+        }
     },
     {
         initialRouteName: 'Home',
