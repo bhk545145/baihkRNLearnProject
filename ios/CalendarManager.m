@@ -40,7 +40,7 @@ RCT_EXPORT_METHOD(deviceConfig:(NSString *)action params:(NSString *)params comp
 RCT_EXPORT_METHOD(deviceControl:(NSString *)action endPointInfo:(NSString *)endPointInfo subEndPointInfo:(NSString *)subEndPointInfo params:(NSString *)params completionHandler:(RCTResponseSenderBlock)callback)
 {
   RCTLogInfo(@"deviceControl %@ ", params);
-  [BLAsyncLet deviceControl:action endPointInfo:endPointInfo subEndPointInfo:subEndPointInfo params:params callback:^(NSString * _Nullable result) {
+  [BLAsyncLet deviceControl:action endPointInfo:endPointInfo subEndPointInfo:nil params:params callback:^(NSString * _Nullable result) {
     callback(@[@(0), result]);
   }];
 }

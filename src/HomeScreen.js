@@ -98,9 +98,11 @@ export default class HomeScreen extends Component {
         return <DeviceCell info={info.item} onPress = {this.onButtonPress} />
     }
 
-    onButtonPress = () => {
+    onButtonPress = (info: Object) => {
+        console.log(info);
         this.props.navigation.navigate('DeviceController', {
             titleParam: '设备控制',
+            info: info,
         });
     }
 
