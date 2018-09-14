@@ -25,7 +25,7 @@ class DeviceCell extends PureComponent {
 
         return (
             <TouchableOpacity style={styles.container} onPress={() => this.props.onPress(info)}>
-                <Image source={{uri: 'http://www.broadlink.com.cn/images/homeFullpage/broadlink.png'}} style={styles.icon} />
+                <Image resizeMode={'contain'} source={{uri: 'http://www.broadlink.com.cn/images/homeFullpage/broadlink.png'}} style={styles.icon} />
 
                 <View style={styles.cell}>
                     <Text style={styles.p}>did:{info.did}</Text>

@@ -110,6 +110,16 @@ const LoginScreenStack = createStackNavigator(
     });
 
 //隐藏tabbar
+HomeScreenStack.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true;
+    if (navigation.state.index > 0) {
+        tabBarVisible = false;
+    }
+
+    return {
+        tabBarVisible,
+    };
+};
 LoginScreenStack.navigationOptions = ({ navigation }) => {
     let tabBarVisible = true;
     if (navigation.state.index > 1) {

@@ -82,7 +82,7 @@ export default class HomeScreen extends Component {
                     renderItem={this.renderCell}
                     refreshState={this.state.refreshState}
                     onHeaderRefresh={this.onHeaderRefresh}
-                    onFooterRefresh={this.onFooterRefresh}
+                    // onFooterRefresh={this.onFooterRefresh}
 
                     footerRefreshingText='玩命加载中 >.<'
                     footerFailureText='我擦嘞，居然失败了 =.=!'

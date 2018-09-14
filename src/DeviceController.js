@@ -22,42 +22,55 @@ export default class DeviceController extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            info: '',
+            events:'',
         };
     }
     componentDidMount() {
-        this.GetUserInfo();
+        this.GetKeyState();
     }
-    GetUserInfo() {
-        //取从上一个界面传递过来的参数
-        const { navigation } = this.props;
-        const endPointInfo = navigation.getParam('endPointInfo', 'unknow');
-        this.setState({endPointInfo:endPointInfo});
-
+    GetKeyState() {
+        let info = this.props.navigation.state.params.info
+        this.setState({
+            info: info,
+        });
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <TouchableOpacity
-                    style={styles.item}
-                    onPress={this.onButtonPress}
-                >
-                    <Text style={styles.itemText}>设备控制</Text>
-                </TouchableOpacity>
+                <View>
+                    <Text>{JSON.stringify(this.state.events)}</Text>
+                </View>
+                <View style={styles.buttonStyle}>
+                    <TouchableOpacity
+                        style={styles.item}
+                        onPress={() => this.onButtonPress(1)}
+                    >
+                        <Text style={styles.itemText}>开</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.item}
+                        onPress={() => this.onButtonPress(0)}
+                    >
+                        <Text style={styles.itemText}>关</Text>
+                    </TouchableOpacity>
+                </View>
+
             </View>
         );
     }
 
-    onButtonPress = () => {
-        let info = this.props.navigation.state.params.info
+    onButtonPress = (val) => {
+        let info = this.state.info;
         let endPointInfo = {
-            "roomId":"2008111905876986177",
+            "roomId":"",
             "context":"",
-            "endPointId":"3009151143314194483",
+            "endPointId":"",
             "deviceInfo":info,
             "type":3,
-            "icon":"http:\/\/www.broadlink.com.cn\/images\/homeFullpage\/broadlink.png",
-            "name":"SP4M  30056",
+            "icon":"",
+            "name":"",
         };
         let subEndPointInfo = {
 
@@ -66,8 +79,7 @@ export default class DeviceController extends Component {
             "did":info.did,
             "act":"set",
             "params":["pwr"],
-            "vals":[[{"val":1,"idx":1}]],
-            "prop":"stdctrl",
+            "vals":[[{"val":val,"idx":1}]],
         };
         CalendarManager.deviceControl('DevControl',JSON.stringify(endPointInfo),JSON.stringify(subEndPointInfo),JSON.stringify(params),(error, events) =>{
             if (error) {
@@ -76,6 +88,7 @@ export default class DeviceController extends Component {
             } else {
                 var data = JSON.parse(events);
                 console.log(data);
+                this.setState({events: events});
             }
         });
     }
@@ -83,24 +96,32 @@ export default class DeviceController extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
+        flex: 1,
+        flexDirection: 'column',
         padding: 10,
-        justifyContent: 'space-around',
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: 'white',
     },
     item: {
         // flex: 1,
-        borderRadius: 20,
+        // borderRadius: 20,
         padding: 10,
         fontSize: 18,
-        height:40,
-        width:140,
-        justifyContent: 'flex-start',
+        height:80,
+        width:80,
+        justifyContent: 'center',
         alignItems: 'center',
         backgroundColor:'#ED5601',
     },
     itemText:{
         color:'white',
+    },
+    buttonStyle:{
+        flexDirection: 'row',
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 })
 

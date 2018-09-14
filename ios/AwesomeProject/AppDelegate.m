@@ -38,7 +38,7 @@
 
 - (void)loadAPPSDK {
   NSDictionary *initDic = @{
-                            @"license":@"CceFpDt7d+r4pZ8KP74tbpNSf9Ug9pP+ytpIXApsCYpvvDEid0s8SdJtKgQMc5QmUsWWVwAAAACvEX37zpG5Wgi/Mlnda1pd2B9J96AQz9N0vO6WstfgR9yEgbkpFXFyJbsnfyHXt8pOdkTVo81rQrPhkOnhmpQBsEkbxXTfoUSQjDzWcfVjcAAAAAA=",
+                            @"license":@"9LARHwsb33GcYoMfg24HpDmp3T1AzfUbCIMODlk5U5kk3FG4E20fq3CNBP+sjXJCgLtjWwAAAAAdxpGCmmkZ9SVX4elwwiRLrG6dyS3/pQTNw+HA0SFm+Y/iiDqaRYAfjPqN0aWCrEKpyNLH0ul/EUxOj+xrY3ELsEkbxXTfoUSQjDzWcfVjcAAAAAA=",
                             @"loglevel":@(4)
                             };
   
