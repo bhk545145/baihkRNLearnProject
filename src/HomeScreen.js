@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import DeviceCell from './DeviceCell'
 import {View,Text,StyleSheet,Button,StatusBar,Platform,YellowBox,NativeModules} from 'react-native';
-import RefreshListView, { RefreshState } from 'react-native-refresh-list-view'
+import RefreshListView, { RefreshState } from 'react-native-refresh-list-view';
+
 var CalendarManager = NativeModules.CalendarManager;
 
 export default class HomeScreen extends Component {

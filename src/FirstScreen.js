@@ -1,8 +1,11 @@
 import React,{Component} from 'react';
-import {View, Text, TextInput, StyleSheet, TouchableOpacity, NativeModules} from 'react-native';
+import {View, Text, TextInput, StyleSheet, TouchableOpacity, NativeModules, Alert} from 'react-native';
 import { NetworkInfo } from 'react-native-network-info';
 var CalendarManager = NativeModules.CalendarManager;
 
+const alerter = (events) => {
+    Alert.alert(events);
+}
 export default class FirstScreen extends Component {
     static navigationOptions = {
         title: '配网',
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     InputText:{
-        height: 30,
+        height: 35,
         width:140,
         borderColor: '#0f0f0f',
         borderWidth: 1

@@ -7,10 +7,14 @@
  */
 
 import React, {Component} from 'react'
-import {View, StyleSheet, Text, TextInput, TouchableOpacity, NativeModules} from 'react-native'
+import {View, StyleSheet, Text, TextInput, TouchableOpacity, NativeModules, Alert} from 'react-native'
 import {RefreshState} from "react-native-refresh-list-view";
 
 var CalendarManager = NativeModules.CalendarManager;
+
+const alerter = (events) => {
+    Alert.alert(events);
+}
 
 export default class DeviceController extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -84,7 +88,7 @@ export default class DeviceController extends Component {
         CalendarManager.deviceControl('DevControl',JSON.stringify(endPointInfo),JSON.stringify(subEndPointInfo),JSON.stringify(params),(error, events) =>{
             if (error) {
                 var errors = 'error:' +  error;
-                alerter(errors);
+                this.setState({events: events});
             } else {
                 var data = JSON.parse(events);
                 console.log(data);

@@ -8,7 +8,6 @@
 
 import React, {PureComponent} from 'react'
 import {View, Text, StyleSheet, TouchableOpacity, Image, PixelRatio} from 'react-native'
-
 const color = {
     theme: '#06C1AE',
     border: '#e0e0e0',

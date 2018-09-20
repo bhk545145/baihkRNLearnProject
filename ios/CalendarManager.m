@@ -17,7 +17,10 @@ RCT_EXPORT_METHOD(accountManagement:(NSString *)action params:(NSString *)params
 {
   RCTLogInfo(@"accountManagement %@ ,%@ ",action, params);
   [BLAsyncLet accountManagement:action params:params callback:^(NSString * _Nullable result) {
-    callback(@[@(0), result]);
+    NSData * datas = [result dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:datas options:NSJSONReadingMutableLeaves error:nil];
+    NSInteger status = [[jsonDict objectForKey:@"status"] integerValue];
+    callback(@[@(status), result]);
   }];
 }
 
@@ -25,7 +28,10 @@ RCT_EXPORT_METHOD(familyManagement:(NSString *)action params:(NSString *)params 
 {
   RCTLogInfo(@"familyManagement %@ ", params);
   [BLAsyncLet familyManagement:action params:params callback:^(NSString * _Nullable result) {
-    callback(@[@(0), result]);
+    NSData * datas = [result dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:datas options:NSJSONReadingMutableLeaves error:nil];
+    NSInteger status = [[jsonDict objectForKey:@"status"] integerValue];
+    callback(@[@(status), result]);
   }];
 }
 
@@ -33,7 +39,10 @@ RCT_EXPORT_METHOD(deviceConfig:(NSString *)action params:(NSString *)params comp
 {
   RCTLogInfo(@"deviceConfig %@ ", params);
   [BLAsyncLet deviceConfig:action params:params callback:^(NSString * _Nullable result) {
-    callback(@[@(0), result]);
+    NSData * datas = [result dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:datas options:NSJSONReadingMutableLeaves error:nil];
+    NSInteger status = [[jsonDict objectForKey:@"status"] integerValue];
+    callback(@[@(status), result]);
   }];
 }
 
@@ -41,7 +50,10 @@ RCT_EXPORT_METHOD(deviceControl:(NSString *)action endPointInfo:(NSString *)endP
 {
   RCTLogInfo(@"deviceControl %@ ", params);
   [BLAsyncLet deviceControl:action endPointInfo:endPointInfo subEndPointInfo:nil params:params callback:^(NSString * _Nullable result) {
-    callback(@[@(0), result]);
+    NSData * datas = [result dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:datas options:NSJSONReadingMutableLeaves error:nil];
+    NSInteger status = [[jsonDict objectForKey:@"status"] integerValue];
+    callback(@[@(status), result]);
   }];
 }
 
@@ -49,7 +61,10 @@ RCT_EXPORT_METHOD(subDeviceManagement:(NSString *)action endPointInfo:(NSString 
 {
   RCTLogInfo(@"subDeviceManagement %@ ", params);
   [BLAsyncLet subDeviceManagement:action endPointInfo:endPointInfo params:params callback:^(NSString * _Nullable result)  {
-    callback(@[@(0), result]);
+    NSData * datas = [result dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:datas options:NSJSONReadingMutableLeaves error:nil];
+    NSInteger status = [[jsonDict objectForKey:@"status"] integerValue];
+    callback(@[@(status), result]);
   }];
 }
 
@@ -57,7 +72,10 @@ RCT_EXPORT_METHOD(iRService:(NSString *)action params:(NSString *)params complet
 {
   RCTLogInfo(@"iRService %@ ", params);
   [BLAsyncLet iRService:action params:params callback:^(NSString * _Nullable result) {
-    callback(@[@(0), result]);
+    NSData * datas = [result dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:datas options:NSJSONReadingMutableLeaves error:nil];
+    NSInteger status = [[jsonDict objectForKey:@"status"] integerValue];
+    callback(@[@(status), result]);
   }];
 }
 

@@ -19,7 +19,9 @@ import java.util.Map;
 import java.util.HashMap;
 
 import cn.com.broadlink.blletasync.BLLetAsync;
+import cn.com.broadlink.blletasync.callback.BLLetAsyncRequestCallbacker;
 import cn.com.broadlink.blletasync.callback.DeviceConfigCallback;
+import cn.com.broadlink.blletasync.callback.SubDeviceManagementCallback;
 
 public class CalendarManager extends ReactContextBaseJavaModule {
     private static final String BLAPPSDK_TAG = "BLAPPSDK_TAG";
@@ -45,6 +47,37 @@ public class CalendarManager extends ReactContextBaseJavaModule {
 
 
     @ReactMethod
+    public void accountManagement(
+            String action,
+            String params,
+            final Callback successCallback) {
+        BLLetAsync.getInstance().accountManagement(action,params,new BLLetAsyncRequestCallbacker(){
+            @Override
+            public void onPostExecute(final String result) {
+                Log.d(BLAPPSDK_TAG, "accountManagement : " + result);
+                successCallback.invoke(0, result);
+
+            }
+        });
+
+    }
+
+    @ReactMethod
+    public void familyManagement(
+            String action,
+            String params,
+            final Callback successCallback) {
+        BLLetAsync.getInstance().familyManagement(action,params,new BLLetAsyncRequestCallbacker(){
+            @Override
+            public void onPostExecute(final String result) {
+                Log.d(BLAPPSDK_TAG, "familyManagement : " + result);
+                successCallback.invoke(0, result);
+            }
+        });
+
+    }
+
+    @ReactMethod
     public void deviceConfig(
             String action,
             String params,
@@ -54,6 +87,54 @@ public class CalendarManager extends ReactContextBaseJavaModule {
             public void configProgress(final String s) {
                 Log.d(BLAPPSDK_TAG, "deviceConfig : " + s);
                 successCallback.invoke(0, s);
+            }
+        });
+
+    }
+
+    @ReactMethod
+    public void deviceControl(
+            String action,
+            String params,
+            String endString,
+            String subendString,
+            final Callback successCallback) {
+        BLLetAsync.getInstance().deviceControl(action,endString,subendString,params,new BLLetAsyncRequestCallbacker(){
+            @Override
+            public void onPostExecute(final String result) {
+                Log.d(BLAPPSDK_TAG, "deviceControl : " + result);
+                successCallback.invoke(0, result);
+            }
+        });
+
+    }
+
+    @ReactMethod
+    public void subDeviceManagement(
+            String action,
+            String params,
+            String endString,
+            final Callback successCallback) {
+        BLLetAsync.getInstance().subDeviceManagement(action,endString,params,new SubDeviceManagementCallback(){
+            @Override
+            public void onPostExecute(final String result) {
+                Log.d(BLAPPSDK_TAG, "subDeviceManagement : " + result);
+                successCallback.invoke(0, result);
+            }
+        });
+
+    }
+
+    @ReactMethod
+    public void iRService(
+            String action,
+            String params,
+            final Callback successCallback) {
+        BLLetAsync.getInstance().iRService(action,params,new BLLetAsyncRequestCallbacker(){
+            @Override
+            public void onPostExecute(final String result) {
+                Log.d(BLAPPSDK_TAG, "subDeviceManagement : " + result);
+                successCallback.invoke(0, result);
             }
         });
 
